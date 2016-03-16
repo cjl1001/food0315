@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" version="2.0">
+
+    <persistence-unit name="defaultPersistenceUnit" transaction-type="RESOURCE_LOCAL">
+        <provider>org.hibernate.ejb.HibernatePersistence</provider>
+        <class>com.qxsoft.model.TbaddressEntity</class>
+        <class>com.qxsoft.model.TbcategoryEntity</class>
+        <class>com.qxsoft.model.TbmenusummaryEntity</class>
+        <class>com.qxsoft.model.TbmerchantEntity</class>
+        <class>com.qxsoft.model.TborderEntity</class>
+        <class>com.qxsoft.model.TborderdetailEntity</class>
+        <class>com.qxsoft.model.TbsaleEntity</class>
+        <class>com.qxsoft.model.TbusersEntity</class>
+        <properties>
+            <!--使用PostgreSQL方言-->
+            <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
+            <!--配置数据库连接 -->
+            <property name="hibernate.connection.url" value="jdbc:postgresql://localhost:5432/db_food"/>
+            <property name="hibernate.connection.driver_class" value="org.postgresql.Driver"/>
+            <property name="hibernate.connection.username" value="postgres"/>
+            <property name="hibernate.connection.password" value="123"/>
+            <!--创建Entity Manager时搜索文件的类型，多个值之间用逗号分隔。
+            可选值：·class：.class类文件;·hbm：Hibernate 配置文件。默认两个都搜索。-->
+            <property name="hibernate.archive.autodetection" value="class"/>
+            <!-- 显示SQL语句 -->
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.connection.useUnicode" value="true"/>
+            <property name="hibernate.connection.characterEncoding" value="UTF-8"/>
+            <!-- 在显示SQL语句时格式化语句 -->
+            <property name="hibernate.format_sql" value="true"/>
+            <property name="hibernate.use_sql_comments" value="false"/>
+            <!-- 自动输出schema创建DDL语句 -->
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
+            <!--<property name="hbm2ddl.auto" value="update"/>-->
+            <!-- 数据库连接超时后自动重连 -->
+            <property name="hibernate.connection.autoReconnect" value="true"/>
+            <property name="connection.autoReconnectForPools" value="true"/>
+            <property name="connection.is-connection-validation-required" value="true"/>
+        </properties>
+    </persistence-unit>
+</persistence>
