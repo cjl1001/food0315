@@ -1,25 +1,23 @@
-package com.qxsoft.model;
+package com.sean.model;
 
 import javax.persistence.*;
-import java.util.Set;
+import java.util.Collection;
 
 /**
- * Created by jz128 on 2016/3/16.
+ * Created by zc-09-023 on 2016/3/18.
  */
 @Entity
-@Table(name = "tbmerchant", schema = "public", catalog = "db_food")
+@Table(name = "tbmerchant", schema = "public", catalog = "test")
 public class TbmerchantEntity {
     private Integer mcid;
     private String mcname;
     private String mcaddres;
     private String mcnum;
-    private Set<TbmenusummaryEntity> tbmenusummaryEntitySetByMcnum;
-    private Set<TbsaleEntity> tbsaleEntitySetByMcid;
-    private Set<TborderEntity> tborderEntitySetByMcid;
+    private TbmenusummaryEntity menusummaryByMcnum;
+    private Collection<TbsaleEntity> saleById;
 
     @Id
     @Column(name = "mcid", nullable = false)
-    @GeneratedValue(strategy = GenerationType.AUTO)
     public Integer getMcid() {
         return mcid;
     }
@@ -49,7 +47,7 @@ public class TbmerchantEntity {
     }
 
     @Basic
-    @Column(name = "mcnum", nullable = true, length = 20)
+    @Column(name = "mcnum", nullable = false, length = 20)
     public String getMcnum() {
         return mcnum;
     }
@@ -82,30 +80,21 @@ public class TbmerchantEntity {
         return result;
     }
 
-    @OneToMany(mappedBy = "tbmerchantEntityByMcnum")
-    public Set<TbmenusummaryEntity> getTbmenusummaryEntitySetByMcnum() {
-        return tbmenusummaryEntitySetByMcnum;
+    @OneToOne(mappedBy = "merchantByMcnum")
+    public TbmenusummaryEntity getMenusummaryByMcnum() {
+        return menusummaryByMcnum;
     }
 
-    public void setTbmenusummaryEntitySetByMcnum(Set<TbmenusummaryEntity> tbmenusummaryEntitySetByMcnum) {
-        this.tbmenusummaryEntitySetByMcnum = tbmenusummaryEntitySetByMcnum;
+    public void setMenusummaryByMcnum(TbmenusummaryEntity menusummaryByMcnum) {
+        this.menusummaryByMcnum = menusummaryByMcnum;
     }
 
-    @OneToMany(mappedBy = "tbmerchantEntityByMcid")
-    public Set<TbsaleEntity> getTbsaleEntitySetByMcid() {
-        return tbsaleEntitySetByMcid;
+    @OneToMany(mappedBy = "merchantByMcid")
+    public Collection<TbsaleEntity> getSaleById() {
+        return saleById;
     }
 
-    public void setTbsaleEntitySetByMcid(Set<TbsaleEntity> tbsaleEntitySetByMcid) {
-        this.tbsaleEntitySetByMcid = tbsaleEntitySetByMcid;
-    }
-
-    @OneToMany(mappedBy = "tbmerchantEntityByMcid")
-    public Set<TborderEntity> getTborderEntitySetByMcid() {
-        return tborderEntitySetByMcid;
-    }
-
-    public void setTborderEntitySetByMcid(Set<TborderEntity> tborderEntitySetByMcid) {
-        this.tborderEntitySetByMcid = tborderEntitySetByMcid;
+    public void setSaleById(Collection<TbsaleEntity> saleById) {
+        this.saleById = saleById;
     }
 }

@@ -1,27 +1,23 @@
-package com.qxsoft.model;
+package com.sean.model;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.sql.Date;
 
 /**
- * Created by jz128 on 2016/3/16.
+ * Created by zc-09-023 on 2016/3/18.
  */
 @Entity
-@Table(name = "tbsale", schema = "public", catalog = "db_food")
+@Table(name = "tbsale", schema = "public", catalog = "test")
 public class TbsaleEntity {
     private Integer sid;
-    //private Integer uid;
-    //private Integer mcid;
-    //private Integer oid;
     private Double msalemoney;
     private Date dsaledate;
-    private TbusersEntity tbusersEntityByUid;
-    private TbmerchantEntity tbmerchantEntityByMcid;
-    private TborderEntity tborderEntityByOid;
+    private TbmerchantEntity merchantByMcid;
+    private TborderEntity orderByOid;
+    private TbusersEntity usersByUid;
 
     @Id
     @Column(name = "sid", nullable = false)
-    @GeneratedValue(strategy = GenerationType.AUTO)
     public Integer getSid() {
         return sid;
     }
@@ -30,38 +26,8 @@ public class TbsaleEntity {
         this.sid = sid;
     }
 
-    /*@Basic
-    @Column(name = "uid", nullable = true)
-    public Integer getUid() {
-        return uid;
-    }
-
-    public void setUid(Integer uid) {
-        this.uid = uid;
-    }
-
     @Basic
-    @Column(name = "mcid", nullable = true)
-    public Integer getMcid() {
-        return mcid;
-    }
-
-    public void setMcid(Integer mcid) {
-        this.mcid = mcid;
-    }
-
-    @Basic
-    @Column(name = "oid", nullable = true)
-    public Integer getOid() {
-        return oid;
-    }
-
-    public void setOid(Integer oid) {
-        this.oid = oid;
-    }*/
-
-    @Basic
-    @Column(name = "msalemoney", nullable = true)
+    @Column(name = "msalemoney", nullable = true, precision = 0)
     public Double getMsalemoney() {
         return msalemoney;
     }
@@ -88,9 +54,6 @@ public class TbsaleEntity {
         TbsaleEntity that = (TbsaleEntity) o;
 
         if (sid != null ? !sid.equals(that.sid) : that.sid != null) return false;
-        /*if (uid != null ? !uid.equals(that.uid) : that.uid != null) return false;
-        if (mcid != null ? !mcid.equals(that.mcid) : that.mcid != null) return false;
-        if (oid != null ? !oid.equals(that.oid) : that.oid != null) return false;*/
         if (msalemoney != null ? !msalemoney.equals(that.msalemoney) : that.msalemoney != null) return false;
         if (dsaledate != null ? !dsaledate.equals(that.dsaledate) : that.dsaledate != null) return false;
 
@@ -100,41 +63,38 @@ public class TbsaleEntity {
     @Override
     public int hashCode() {
         int result = sid != null ? sid.hashCode() : 0;
-        /*result = 31 * result + (uid != null ? uid.hashCode() : 0);
-        result = 31 * result + (mcid != null ? mcid.hashCode() : 0);
-        result = 31 * result + (oid != null ? oid.hashCode() : 0);*/
         result = 31 * result + (msalemoney != null ? msalemoney.hashCode() : 0);
         result = 31 * result + (dsaledate != null ? dsaledate.hashCode() : 0);
         return result;
     }
 
     @ManyToOne
-    @JoinColumn(name = "uid",referencedColumnName = "uid")
-    public TbusersEntity getTbusersEntityByUid() {
-        return tbusersEntityByUid;
+    @JoinColumn(name = "mcid", referencedColumnName = "mcid")
+    public TbmerchantEntity getMerchantByMcid() {
+        return merchantByMcid;
     }
 
-    public void setTbusersEntityByUid(TbusersEntity tbusersEntityByUid) {
-        this.tbusersEntityByUid = tbusersEntityByUid;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "mcid",referencedColumnName = "mcid")
-    public TbmerchantEntity getTbmerchantEntityByMcid() {
-        return tbmerchantEntityByMcid;
-    }
-
-    public void setTbmerchantEntityByMcid(TbmerchantEntity tbmerchantEntityByMcid) {
-        this.tbmerchantEntityByMcid = tbmerchantEntityByMcid;
+    public void setMerchantByMcid(TbmerchantEntity merchantByMcid) {
+        this.merchantByMcid = merchantByMcid;
     }
 
     @ManyToOne
-    @JoinColumn(name = "oid",referencedColumnName = "oid")
-    public TborderEntity getTborderEntityByOid() {
-        return tborderEntityByOid;
+    @JoinColumn(name = "oid", referencedColumnName = "oid")
+    public TborderEntity getOrderByOid() {
+        return orderByOid;
     }
 
-    public void setTborderEntityByOid(TborderEntity tborderEntityByOid) {
-        this.tborderEntityByOid = tborderEntityByOid;
+    public void setOrderByOid(TborderEntity orderByOid) {
+        this.orderByOid = orderByOid;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "uid", referencedColumnName = "uid")
+    public TbusersEntity getUsersByUid() {
+        return usersByUid;
+    }
+
+    public void setUsersByUid(TbusersEntity usersByUid) {
+        this.usersByUid = usersByUid;
     }
 }

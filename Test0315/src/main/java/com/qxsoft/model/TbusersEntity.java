@@ -1,14 +1,14 @@
-package com.qxsoft.model;
+package com.sean.model;
 
 import javax.persistence.*;
-import java.util.Date;
-import java.util.Set;
+import java.sql.Date;
+import java.util.Collection;
 
 /**
- * Created by jz128 on 2016/3/16.
+ * Created by zc-09-023 on 2016/3/18.
  */
 @Entity
-@Table(name = "tbusers", schema = "public", catalog = "db_food")
+@Table(name = "tbusers", schema = "public", catalog = "test")
 public class TbusersEntity {
     private Integer uid;
     private String susername;
@@ -19,13 +19,11 @@ public class TbusersEntity {
     private Double mcostmoney;
     private Integer iuserpoint;
     private Integer irolelevel;
-    private Set<TbaddressEntity> adrressByUid;
-    private Set<TbsaleEntity> tbsaleEntitySetByUid;
-    private Set<TborderEntity> tborderEntitySetByUid;
+    private Collection<TbaddressEntity> addressById;
+    private Collection<TbsaleEntity> saleById;
 
     @Id
     @Column(name = "uid", nullable = false)
-    @GeneratedValue(strategy = GenerationType.AUTO)
     public Integer getUid() {
         return uid;
     }
@@ -85,7 +83,7 @@ public class TbusersEntity {
     }
 
     @Basic
-    @Column(name = "mcostmoney", nullable = true)
+    @Column(name = "mcostmoney", nullable = true, precision = 0)
     public Double getMcostmoney() {
         return mcostmoney;
     }
@@ -149,29 +147,18 @@ public class TbusersEntity {
     }
 
     @OneToMany(mappedBy = "userByUid")
-    public Set<TbaddressEntity> getAdrressByUid() {
-        return adrressByUid;
+    public Collection<TbaddressEntity> getAddressById() {
+        return addressById;
     }
 
-    public void setAdrressByUid(Set<TbaddressEntity> adrressByUid) {
-        this.adrressByUid = adrressByUid;
+    public void setAddressById(Collection<TbaddressEntity> addressById) {
+        this.addressById = addressById;
     }
 
-    @OneToMany(mappedBy = "tbusersEntityByUid")
-    public Set<TbsaleEntity> getTbsaleEntitySetByUid() {
-        return tbsaleEntitySetByUid;
+    @OneToMany(mappedBy = "usersByUid")
+    public Collection<TbsaleEntity> getSaleById() {
+        return saleById;
     }
 
-    public void setTbsaleEntitySetByUid(Set<TbsaleEntity> tbsaleEntitySetByUid) {
-        this.tbsaleEntitySetByUid = tbsaleEntitySetByUid;
-    }
-
-    @OneToMany(mappedBy = "tbusersEntityByUid")
-    public Set<TborderEntity> getTborderEntitySetByUid() {
-        return tborderEntitySetByUid;
-    }
-
-    public void setTborderEntitySetByUid(Set<TborderEntity> tborderEntitySetByUid) {
-        this.tborderEntitySetByUid = tborderEntitySetByUid;
-    }
+    public void setSaleById(Collection<TbsaleEntity> saleById) {this.saleById = saleById;}
 }

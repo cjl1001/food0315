@@ -1,24 +1,19 @@
-package com.qxsoft.model;
+package com.sean.model;
 
 import javax.persistence.*;
-import java.util.Set;
 
 /**
- * Created by jz128 on 2016/3/16.
+ * Created by zc-09-023 on 2016/3/18.
  */
 @Entity
-@Table(name = "tbaddress", schema = "public", catalog = "db_food")
+@Table(name = "tbaddress", schema = "public", catalog = "test")
 public class TbaddressEntity {
     private Integer aid;
-    //private Integer uid;
     private String address;
-    private Integer defaultStatus;
     private TbusersEntity userByUid;
-    private Set<TborderEntity> tborderEntitySetByAid;
 
     @Id
     @Column(name = "aid", nullable = false)
-    @GeneratedValue(strategy = GenerationType.AUTO)
     public Integer getAid() {
         return aid;
     }
@@ -26,16 +21,6 @@ public class TbaddressEntity {
     public void setAid(Integer aid) {
         this.aid = aid;
     }
-
-    /*@Basic
-    @Column(name = "uid", nullable = true)
-    public Integer getUid() {
-        return uid;
-    }
-
-    public void setUid(Integer uid) {
-        this.uid = uid;
-    }*/
 
     @Basic
     @Column(name = "address", nullable = true, length = 50)
@@ -47,16 +32,6 @@ public class TbaddressEntity {
         this.address = address;
     }
 
-    @Basic
-    @Column(name = "defaultStatus", nullable = true, length = 50)
-    public Integer getDefaultStatus() {
-        return defaultStatus;
-    }
-
-    public void setDefaultStatus(Integer defaultStatus) {
-        this.defaultStatus = defaultStatus;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -65,7 +40,6 @@ public class TbaddressEntity {
         TbaddressEntity that = (TbaddressEntity) o;
 
         if (aid != null ? !aid.equals(that.aid) : that.aid != null) return false;
-        //if (uid != null ? !uid.equals(that.uid) : that.uid != null) return false;
         if (address != null ? !address.equals(that.address) : that.address != null) return false;
 
         return true;
@@ -74,7 +48,6 @@ public class TbaddressEntity {
     @Override
     public int hashCode() {
         int result = aid != null ? aid.hashCode() : 0;
-        //result = 31 * result + (uid != null ? uid.hashCode() : 0);
         result = 31 * result + (address != null ? address.hashCode() : 0);
         return result;
     }
@@ -87,14 +60,5 @@ public class TbaddressEntity {
 
     public void setUserByUid(TbusersEntity userByUid) {
         this.userByUid = userByUid;
-    }
-
-    @OneToMany(mappedBy = "tbaddressEntityByAid")
-    public Set<TborderEntity> getTborderEntitySetByAid() {
-        return tborderEntitySetByAid;
-    }
-
-    public void setTborderEntitySetByAid(Set<TborderEntity> tborderEntitySetByAid) {
-        this.tborderEntitySetByAid = tborderEntitySetByAid;
     }
 }

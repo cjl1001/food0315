@@ -1,33 +1,28 @@
-package com.qxsoft.model;
+package com.sean.model;
 
 import javax.persistence.*;
-import java.util.Date;
-import java.util.Set;
+import java.sql.Time;
+import java.util.Collection;
 
 /**
- * Created by jz128 on 2016/3/16.
+ * Created by zc-09-023 on 2016/3/18.
  */
 @Entity
-@Table(name = "tborder", schema = "public", catalog = "db_food")
+@Table(name = "tborder", schema = "public", catalog = "test")
 public class TborderEntity {
     private Integer oid;
-    //private Integer uid;
-    //private Integer mcid;
-    //private Integer aid;
+    private String smerchant;
+    private String susername;
     private Double mtotalcost;
-    private Date ordertime;
-    private Integer orderstatus;
-    private String ordernum;
-    private String orderremark;
-    private Set<TborderdetailEntity> tborderdetailEntitySetByOid;
-    private Set<TbsaleEntity> tbsaleEntitySetBySid;
-    private TbusersEntity tbusersEntityByUid;
-    private TbmerchantEntity tbmerchantEntityByMcid;
-    private TbaddressEntity tbaddressEntityByAid;
+    private Time tordertime;
+    private Integer iorderstatus;
+    private String sordernum;
+    private String torderremark;
+    private String sorderaddress;
+    private Collection<TbsaleEntity> saleById;
 
     @Id
     @Column(name = "oid", nullable = false)
-    @GeneratedValue(strategy = GenerationType.AUTO)
     public Integer getOid() {
         return oid;
     }
@@ -36,38 +31,28 @@ public class TborderEntity {
         this.oid = oid;
     }
 
-    /*@Basic
-    @Column(name = "uid", nullable = true)
-    public Integer getUid() {
-        return uid;
+    @Basic
+    @Column(name = "smerchant", nullable = true, length = 20)
+    public String getSmerchant() {
+        return smerchant;
     }
 
-    public void setUid(Integer uid) {
-        this.uid = uid;
+    public void setSmerchant(String smerchant) {
+        this.smerchant = smerchant;
     }
 
     @Basic
-    @Column(name = "mcid", nullable = true)
-    public Integer getMcid() {
-        return mcid;
+    @Column(name = "susername", nullable = true, length = 20)
+    public String getSusername() {
+        return susername;
     }
 
-    public void setMcid(Integer mcid) {
-        this.mcid = mcid;
+    public void setSusername(String susername) {
+        this.susername = susername;
     }
 
     @Basic
-    @Column(name = "aid", nullable = true)
-    public Integer getAid() {
-        return aid;
-    }
-
-    public void setAid(Integer aid) {
-        this.aid = aid;
-    }*/
-
-    @Basic
-    @Column(name = "mtotalcost", nullable = true)
+    @Column(name = "mtotalcost", nullable = true, precision = 0)
     public Double getMtotalcost() {
         return mtotalcost;
     }
@@ -77,43 +62,53 @@ public class TborderEntity {
     }
 
     @Basic
-    @Column(name = "ordertime", nullable = true)
-    public Date getOrdertime() {
-        return ordertime;
+    @Column(name = "tordertime", nullable = true)
+    public Time getTordertime() {
+        return tordertime;
     }
 
-    public void setOrdertime(Date ordertime) {
-        this.ordertime = ordertime;
-    }
-
-    @Basic
-    @Column(name = "orderstatus", nullable = true)
-    public Integer getOrderstatus() {
-        return orderstatus;
-    }
-
-    public void setOrderstatus(Integer orderstatus) {
-        this.orderstatus = orderstatus;
+    public void setTordertime(Time tordertime) {
+        this.tordertime = tordertime;
     }
 
     @Basic
-    @Column(name = "ordernum", nullable = true, length = 20)
-    public String getOrdernum() {
-        return ordernum;
+    @Column(name = "iorderstatus", nullable = true)
+    public Integer getIorderstatus() {
+        return iorderstatus;
     }
 
-    public void setOrdernum(String ordernum) {
-        this.ordernum = ordernum;
+    public void setIorderstatus(Integer iorderstatus) {
+        this.iorderstatus = iorderstatus;
     }
 
     @Basic
-    @Column(name = "orderremark", nullable = true, length = -1)
-    public String getOrderremark() {
-        return orderremark;
+    @Column(name = "sordernum", nullable = true, length = 20)
+    public String getSordernum() {
+        return sordernum;
     }
 
-    public void setOrderremark(String orderremark) {
-        this.orderremark = orderremark;
+    public void setSordernum(String sordernum) {
+        this.sordernum = sordernum;
+    }
+
+    @Basic
+    @Column(name = "torderremark", nullable = true, length = -1)
+    public String getTorderremark() {
+        return torderremark;
+    }
+
+    public void setTorderremark(String torderremark) {
+        this.torderremark = torderremark;
+    }
+
+    @Basic
+    @Column(name = "sorderaddress", nullable = true, length = 50)
+    public String getSorderaddress() {
+        return sorderaddress;
+    }
+
+    public void setSorderaddress(String sorderaddress) {
+        this.sorderaddress = sorderaddress;
     }
 
     @Override
@@ -124,14 +119,15 @@ public class TborderEntity {
         TborderEntity that = (TborderEntity) o;
 
         if (oid != null ? !oid.equals(that.oid) : that.oid != null) return false;
-        /*if (uid != null ? !uid.equals(that.uid) : that.uid != null) return false;
-        if (mcid != null ? !mcid.equals(that.mcid) : that.mcid != null) return false;
-        if (aid != null ? !aid.equals(that.aid) : that.aid != null) return false;*/
+        if (smerchant != null ? !smerchant.equals(that.smerchant) : that.smerchant != null) return false;
+        if (susername != null ? !susername.equals(that.susername) : that.susername != null) return false;
         if (mtotalcost != null ? !mtotalcost.equals(that.mtotalcost) : that.mtotalcost != null) return false;
-        if (ordertime != null ? !ordertime.equals(that.ordertime) : that.ordertime != null) return false;
-        if (orderstatus != null ? !orderstatus.equals(that.orderstatus) : that.orderstatus != null) return false;
-        if (ordernum != null ? !ordernum.equals(that.ordernum) : that.ordernum != null) return false;
-        if (orderremark != null ? !orderremark.equals(that.orderremark) : that.orderremark != null) return false;
+        if (tordertime != null ? !tordertime.equals(that.tordertime) : that.tordertime != null) return false;
+        if (iorderstatus != null ? !iorderstatus.equals(that.iorderstatus) : that.iorderstatus != null) return false;
+        if (sordernum != null ? !sordernum.equals(that.sordernum) : that.sordernum != null) return false;
+        if (torderremark != null ? !torderremark.equals(that.torderremark) : that.torderremark != null) return false;
+        if (sorderaddress != null ? !sorderaddress.equals(that.sorderaddress) : that.sorderaddress != null)
+            return false;
 
         return true;
     }
@@ -139,62 +135,23 @@ public class TborderEntity {
     @Override
     public int hashCode() {
         int result = oid != null ? oid.hashCode() : 0;
-        /*result = 31 * result + (uid != null ? uid.hashCode() : 0);
-        result = 31 * result + (mcid != null ? mcid.hashCode() : 0);
-        result = 31 * result + (aid != null ? aid.hashCode() : 0);*/
+        result = 31 * result + (smerchant != null ? smerchant.hashCode() : 0);
+        result = 31 * result + (susername != null ? susername.hashCode() : 0);
         result = 31 * result + (mtotalcost != null ? mtotalcost.hashCode() : 0);
-        result = 31 * result + (ordertime != null ? ordertime.hashCode() : 0);
-        result = 31 * result + (orderstatus != null ? orderstatus.hashCode() : 0);
-        result = 31 * result + (ordernum != null ? ordernum.hashCode() : 0);
-        result = 31 * result + (orderremark != null ? orderremark.hashCode() : 0);
+        result = 31 * result + (tordertime != null ? tordertime.hashCode() : 0);
+        result = 31 * result + (iorderstatus != null ? iorderstatus.hashCode() : 0);
+        result = 31 * result + (sordernum != null ? sordernum.hashCode() : 0);
+        result = 31 * result + (torderremark != null ? torderremark.hashCode() : 0);
+        result = 31 * result + (sorderaddress != null ? sorderaddress.hashCode() : 0);
         return result;
     }
 
-    @OneToMany(mappedBy = "tborderEntityByOid")
-    public Set<TborderdetailEntity> getTborderdetailEntitySetByOid() {
-        return tborderdetailEntitySetByOid;
+    @OneToMany(mappedBy = "orderByOid")
+    public Collection<TbsaleEntity> getSaleById() {
+        return saleById;
     }
 
-    public void setTborderdetailEntitySetByOid(Set<TborderdetailEntity> tborderdetailEntitySetByOid) {
-        this.tborderdetailEntitySetByOid = tborderdetailEntitySetByOid;
-    }
-
-    @OneToMany(mappedBy = "tborderEntityByOid")
-    public Set<TbsaleEntity> getTbsaleEntitySetBySid() {
-        return tbsaleEntitySetBySid;
-    }
-
-    public void setTbsaleEntitySetBySid(Set<TbsaleEntity> tbsaleEntitySetBySid) {
-        this.tbsaleEntitySetBySid = tbsaleEntitySetBySid;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "uid",referencedColumnName = "uid")
-    public TbusersEntity getTbusersEntityByUid() {
-        return tbusersEntityByUid;
-    }
-
-    public void setTbusersEntityByUid(TbusersEntity tbusersEntityByUid) {
-        this.tbusersEntityByUid = tbusersEntityByUid;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "mcid",referencedColumnName = "mcid")
-    public TbmerchantEntity getTbmerchantEntityByMcid() {
-        return tbmerchantEntityByMcid;
-    }
-
-    public void setTbmerchantEntityByMcid(TbmerchantEntity tbmerchantEntityByMcid) {
-        this.tbmerchantEntityByMcid = tbmerchantEntityByMcid;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "aid",referencedColumnName = "aid")
-    public TbaddressEntity getTbaddressEntityByAid() {
-        return tbaddressEntityByAid;
-    }
-
-    public void setTbaddressEntityByAid(TbaddressEntity tbaddressEntityByAid) {
-        this.tbaddressEntityByAid = tbaddressEntityByAid;
+    public void setSaleById(Collection<TbsaleEntity> saleById) {
+        this.saleById = saleById;
     }
 }

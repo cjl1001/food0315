@@ -1,22 +1,21 @@
-package com.qxsoft.model;
+package com.sean.model;
 
 import javax.persistence.*;
-import java.util.Set;
+import java.util.Collection;
 
 /**
- * Created by jz128 on 2016/3/16.
+ * Created by zc-09-023 on 2016/3/18.
  */
 @Entity
-@Table(name = "tbcategory", schema = "public", catalog = "db_food")
+@Table(name = "tbcategory", schema = "public", catalog = "test")
 public class TbcategoryEntity {
     private Integer cid;
     private String scatename;
     private Integer parentid;
-    private Set<TbmenusummaryEntity> tbmenusummaryEntitySetByCid;
+    private Collection<TbmenusummaryEntity> menusummaryById;
 
     @Id
     @Column(name = "cid", nullable = false)
-    @GeneratedValue(strategy = GenerationType.AUTO)
     public Integer getCid() {
         return cid;
     }
@@ -67,12 +66,12 @@ public class TbcategoryEntity {
         return result;
     }
 
-    @OneToMany(mappedBy = "tbcategoryEntityByCid")
-    public Set<TbmenusummaryEntity> getTbmenusummaryEntitySetByCid() {
-        return tbmenusummaryEntitySetByCid;
+    @OneToMany(mappedBy = "categoryByCid")
+    public Collection<TbmenusummaryEntity> getMenusummaryById() {
+        return menusummaryById;
     }
 
-    public void setTbmenusummaryEntitySetByCid(Set<TbmenusummaryEntity> tbmenusummaryEntitySetByCid) {
-        this.tbmenusummaryEntitySetByCid = tbmenusummaryEntitySetByCid;
+    public void setMenusummaryById(Collection<TbmenusummaryEntity> menusummaryById) {
+        this.menusummaryById = menusummaryById;
     }
 }
