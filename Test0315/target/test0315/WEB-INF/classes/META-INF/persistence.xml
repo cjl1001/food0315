@@ -15,7 +15,7 @@
             <!--使用PostgreSQL方言-->
             <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
             <!--配置数据库连接 -->
-            <property name="hibernate.connection.url" value="jdbc:postgresql://localhost:5432/db_food"/>
+            <property name="hibernate.connection.url" value="${}"/>
             <property name="hibernate.connection.driver_class" value="org.postgresql.Driver"/>
             <property name="hibernate.connection.username" value="postgres"/>
             <property name="hibernate.connection.password" value="123"/>

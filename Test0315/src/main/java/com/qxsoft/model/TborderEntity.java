@@ -1,20 +1,20 @@
-package com.sean.model;
+package com.qxsoft.model;
 
 import javax.persistence.*;
-import java.sql.Time;
+import java.util.Date;
 import java.util.Collection;
 
 /**
  * Created by zc-09-023 on 2016/3/18.
  */
 @Entity
-@Table(name = "tborder", schema = "public", catalog = "test")
+@Table(name = "tborder", schema = "public", catalog = "db_food")
 public class TborderEntity {
     private Integer oid;
     private String smerchant;
     private String susername;
     private Double mtotalcost;
-    private Time tordertime;
+    private Date torderDate;
     private Integer iorderstatus;
     private String sordernum;
     private String torderremark;
@@ -23,6 +23,7 @@ public class TborderEntity {
 
     @Id
     @Column(name = "oid", nullable = false)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public Integer getOid() {
         return oid;
     }
@@ -63,12 +64,12 @@ public class TborderEntity {
 
     @Basic
     @Column(name = "tordertime", nullable = true)
-    public Time getTordertime() {
-        return tordertime;
+    public Date getTorderDate() {
+        return torderDate;
     }
 
-    public void setTordertime(Time tordertime) {
-        this.tordertime = tordertime;
+    public void setTorderDate(Date torderDate) {
+        this.torderDate = torderDate;
     }
 
     @Basic
@@ -122,7 +123,7 @@ public class TborderEntity {
         if (smerchant != null ? !smerchant.equals(that.smerchant) : that.smerchant != null) return false;
         if (susername != null ? !susername.equals(that.susername) : that.susername != null) return false;
         if (mtotalcost != null ? !mtotalcost.equals(that.mtotalcost) : that.mtotalcost != null) return false;
-        if (tordertime != null ? !tordertime.equals(that.tordertime) : that.tordertime != null) return false;
+        if (torderDate != null ? !torderDate.equals(that.torderDate) : that.torderDate != null) return false;
         if (iorderstatus != null ? !iorderstatus.equals(that.iorderstatus) : that.iorderstatus != null) return false;
         if (sordernum != null ? !sordernum.equals(that.sordernum) : that.sordernum != null) return false;
         if (torderremark != null ? !torderremark.equals(that.torderremark) : that.torderremark != null) return false;
@@ -138,7 +139,7 @@ public class TborderEntity {
         result = 31 * result + (smerchant != null ? smerchant.hashCode() : 0);
         result = 31 * result + (susername != null ? susername.hashCode() : 0);
         result = 31 * result + (mtotalcost != null ? mtotalcost.hashCode() : 0);
-        result = 31 * result + (tordertime != null ? tordertime.hashCode() : 0);
+        result = 31 * result + (torderDate != null ? torderDate.hashCode() : 0);
         result = 31 * result + (iorderstatus != null ? iorderstatus.hashCode() : 0);
         result = 31 * result + (sordernum != null ? sordernum.hashCode() : 0);
         result = 31 * result + (torderremark != null ? torderremark.hashCode() : 0);

@@ -1,14 +1,14 @@
-package com.sean.model;
+package com.qxsoft.model;
 
 import javax.persistence.*;
-import java.sql.Date;
+import java.util.Date;
 import java.util.Collection;
 
 /**
  * Created by zc-09-023 on 2016/3/18.
  */
 @Entity
-@Table(name = "tbusers", schema = "public", catalog = "test")
+@Table(name = "tbusers", schema = "public", catalog = "db_food")
 public class TbusersEntity {
     private Integer uid;
     private String susername;
@@ -19,11 +19,15 @@ public class TbusersEntity {
     private Double mcostmoney;
     private Integer iuserpoint;
     private Integer irolelevel;
-    private Collection<TbaddressEntity> addressById;
-    private Collection<TbsaleEntity> saleById;
+    private Collection<com.qxsoft.model.TbaddressEntity> addressById;
+    private Collection<com.qxsoft.model.TbsaleEntity> saleById;
 
     @Id
     @Column(name = "uid", nullable = false)
+    /* sequenceName ="tbusers_uid_seq" 对应数据库中的序列*/
+    @SequenceGenerator(name = "tbusers_uid_seq",sequenceName ="tbusers_uid_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "tbusers_uid_seq")
+    /*@GeneratedValue(strategy = GenerationType.AUTO)*/
     public Integer getUid() {
         return uid;
     }
@@ -33,7 +37,7 @@ public class TbusersEntity {
     }
 
     @Basic
-    @Column(name = "susername", nullable = true, length = 20)
+    @Column(name = "susername2", nullable = true, length = 20)
     public String getSusername() {
         return susername;
     }
@@ -147,18 +151,18 @@ public class TbusersEntity {
     }
 
     @OneToMany(mappedBy = "userByUid")
-    public Collection<TbaddressEntity> getAddressById() {
+    public Collection<com.qxsoft.model.TbaddressEntity> getAddressById() {
         return addressById;
     }
 
-    public void setAddressById(Collection<TbaddressEntity> addressById) {
+    public void setAddressById(Collection<com.qxsoft.model.TbaddressEntity> addressById) {
         this.addressById = addressById;
     }
 
     @OneToMany(mappedBy = "usersByUid")
-    public Collection<TbsaleEntity> getSaleById() {
+    public Collection<com.qxsoft.model.TbsaleEntity> getSaleById() {
         return saleById;
     }
 
-    public void setSaleById(Collection<TbsaleEntity> saleById) {this.saleById = saleById;}
+    public void setSaleById(Collection<com.qxsoft.model.TbsaleEntity> saleById) {this.saleById = saleById;}
 }

@@ -1,4 +1,4 @@
-package com.sean.model;
+package com.qxsoft.model;
 
 import javax.persistence.*;
 import java.util.Collection;
@@ -7,7 +7,7 @@ import java.util.Collection;
  * Created by zc-09-023 on 2016/3/18.
  */
 @Entity
-@Table(name = "tbmenusummary", schema = "public", catalog = "test")
+@Table(name = "tbmenusummary", schema = "public", catalog = "db_food")
 public class TbmenusummaryEntity {
     private Integer msid;
     private String smenuname;
@@ -21,6 +21,7 @@ public class TbmenusummaryEntity {
 
     @Id
     @Column(name = "msid", nullable = false)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public Integer getMsid() {
         return msid;
     }

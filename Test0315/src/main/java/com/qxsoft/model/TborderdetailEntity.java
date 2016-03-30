@@ -1,4 +1,4 @@
-package com.sean.model;
+package com.qxsoft.model;
 
 import javax.persistence.*;
 
@@ -6,17 +6,18 @@ import javax.persistence.*;
  * Created by zc-09-023 on 2016/3/18.
  */
 @Entity
-@Table(name = "tborderdetail", schema = "public", catalog = "test")
+@Table(name = "tborderdetail", schema = "public", catalog = "db_food")
 public class TborderdetailEntity {
     private Integer did;
     private Integer icount;
     private Double mprice;
     private Double mtotalmoney;
-    private TbmenusummaryEntity menuByMsid;
+    private com.qxsoft.model.TbmenusummaryEntity menuByMsid;
     private TborderEntity orderByOid;
 
     @Id
     @Column(name = "did", nullable = false)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public Integer getDid() {
         return did;
     }
@@ -81,11 +82,11 @@ public class TborderdetailEntity {
 
     @ManyToOne
     @JoinColumn(name = "msid", referencedColumnName = "msid")
-    public TbmenusummaryEntity getMenuByMsid() {
+    public com.qxsoft.model.TbmenusummaryEntity getMenuByMsid() {
         return menuByMsid;
     }
 
-    public void setMenuByMsid(TbmenusummaryEntity menuByMsid) {
+    public void setMenuByMsid(com.qxsoft.model.TbmenusummaryEntity menuByMsid) {
         this.menuByMsid = menuByMsid;
     }
 

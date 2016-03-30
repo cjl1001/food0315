@@ -1,23 +1,24 @@
-package com.sean.model;
+package com.qxsoft.model;
 
 import javax.persistence.*;
-import java.sql.Date;
+import java.util.Date;
 
 /**
  * Created by zc-09-023 on 2016/3/18.
  */
 @Entity
-@Table(name = "tbsale", schema = "public", catalog = "test")
+@Table(name = "tbsale", schema = "public", catalog = "db_food")
 public class TbsaleEntity {
     private Integer sid;
     private Double msalemoney;
     private Date dsaledate;
-    private TbmerchantEntity merchantByMcid;
-    private TborderEntity orderByOid;
+    private com.qxsoft.model.TbmerchantEntity merchantByMcid;
+    private com.qxsoft.model.TborderEntity orderByOid;
     private TbusersEntity usersByUid;
 
     @Id
     @Column(name = "sid", nullable = false)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public Integer getSid() {
         return sid;
     }
@@ -70,21 +71,21 @@ public class TbsaleEntity {
 
     @ManyToOne
     @JoinColumn(name = "mcid", referencedColumnName = "mcid")
-    public TbmerchantEntity getMerchantByMcid() {
+    public com.qxsoft.model.TbmerchantEntity getMerchantByMcid() {
         return merchantByMcid;
     }
 
-    public void setMerchantByMcid(TbmerchantEntity merchantByMcid) {
+    public void setMerchantByMcid(com.qxsoft.model.TbmerchantEntity merchantByMcid) {
         this.merchantByMcid = merchantByMcid;
     }
 
     @ManyToOne
     @JoinColumn(name = "oid", referencedColumnName = "oid")
-    public TborderEntity getOrderByOid() {
+    public com.qxsoft.model.TborderEntity getOrderByOid() {
         return orderByOid;
     }
 
-    public void setOrderByOid(TborderEntity orderByOid) {
+    public void setOrderByOid(com.qxsoft.model.TborderEntity orderByOid) {
         this.orderByOid = orderByOid;
     }
 

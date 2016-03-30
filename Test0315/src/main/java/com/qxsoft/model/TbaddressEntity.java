@@ -1,4 +1,4 @@
-package com.sean.model;
+package com.qxsoft.model;
 
 import javax.persistence.*;
 
@@ -6,7 +6,7 @@ import javax.persistence.*;
  * Created by zc-09-023 on 2016/3/18.
  */
 @Entity
-@Table(name = "tbaddress", schema = "public", catalog = "test")
+@Table(name = "tbaddress", schema = "public", catalog = "db_food")
 public class TbaddressEntity {
     private Integer aid;
     private String address;
@@ -14,6 +14,9 @@ public class TbaddressEntity {
 
     @Id
     @Column(name = "aid", nullable = false)
+    @SequenceGenerator(name = "tbaddress_aid_seq",sequenceName ="tbaddress_aid_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "tbaddress_aid_seq")
+    /*@GeneratedValue(strategy = GenerationType.AUTO)*/
     public Integer getAid() {
         return aid;
     }
