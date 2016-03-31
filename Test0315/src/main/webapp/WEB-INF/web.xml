@@ -40,6 +40,16 @@
     <url-pattern>/*</url-pattern>
   </filter-mapping>
 
+  //配置session过滤器,防止session超时异常
+  <filter>
+  <filter-name>sessionFilter</filter-name>
+  <filter-class>com.qxsoft.interceptor.SessionFilter</filter-class>
+  </filter>
+  <filter-mapping>
+  <filter-name>sessionFilter</filter-name>
+  <url-pattern>/*</url-pattern>
+  </filter-mapping>
+
   <!--  延迟加载时,表示层无法加载需要缓迟加载的数据,为了避免因为延迟加载而报session已经关闭的错误:
   配置过滤器会对客户端每次请求分配一个session,将请求结果返回给客户端，并且在完成展现后关闭session,  -->
   <filter>
